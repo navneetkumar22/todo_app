@@ -70,11 +70,34 @@ exports.deleteTodo = async (req, res) => {
 
 
 /**
+ *  Get All tasks
  *  Adding a Task
  *  Editing a Task
  *  Deleting a task
  */
 
+
+// Get all tasks
+exports.getAllTasks = async (req, res) => {
+    try {
+        const getTodo = await Todo.findById(req.params.id);
+
+        //check if todo exists
+        if (!getTodo) {
+            throw new Error("Todo does not exist")
+        }
+
+        // get all tasks
+        const allTasks = getTodo.tasks;
+        res.status(200).json({
+            success: true,
+            message: "Tasks fetched successfully",
+            allTasks
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 // Add a task in the existing Todo
 exports.addTask = async (req, res) => {
@@ -106,33 +129,24 @@ exports.editTask = async (req, res) => {
     try {
 
         const { todoId, taskId } = req.params;
-        const todoExist = await Todo.findById(todoId);
 
         //todo validation - check if todo exist
+        const todoExist = await Todo.findById(todoId);
         if (!todoExist) {
             throw new Error("Todo does not exists")
         }
 
         //task validation - check if task exist
         const taskExist = todoExist.tasks.some(element => element._id == taskId);
-        // returns true if task found
         if (!taskExist) {
             throw new Error("Task does not exists")
         }
 
-        //editing the task
-        const newTask = todoExist.tasks.map((element) => {
-            if (element.id === taskId) {
-                element.taskTitle = req.body.task;
-            } else {
-                // throw new Error("Task does not even exist")
-                return element;
-            }
-            console.log(element);
-        })
+        //find index of task and then edit the title
+        const taskIndex = todoExist.tasks.findIndex((obj => obj._id == taskId));
+        todoExist.tasks[taskIndex].taskTitle = req.body.task;
 
-        //Updating existing Todo with the new Task
-        todoExist.tasks = newTask;
+        //update the Todo with the new title
         const updatedTodo = await Todo.findByIdAndUpdate(todoId, todoExist);
         res.status(200).json({
             success: true,
@@ -140,6 +154,38 @@ exports.editTask = async (req, res) => {
             todoExist
         })
 
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//Delete a Task
+exports.deleteTask = async (req, res) => {
+    try {
+        const { todoId, taskId } = req.params;
+        const todoExist = await Todo.findById(todoId);
+
+        //check if todo exist
+        if (!todoExist) {
+            throw new Error("Todo does not exist")
+        }
+
+        //task validation - check if task exist
+        const taskExist = todoExist.tasks.some(element => element._id == taskId);
+        if (!taskExist) {
+            throw new Error("Task does not exists")
+        }
+
+        //find index of task and then delete it - return updated todo
+        const taskIndex = todoExist.tasks.findIndex((obj => obj._id == taskId));
+        todoExist.tasks.splice(taskIndex, 1);
+
+        const updatedTodo = await Todo.findByIdAndUpdate(todoId, todoExist);
+        res.status(200).json({
+            success: true,
+            message: "Task deleted successfully",
+            todoExist
+        })
     } catch (error) {
         console.log(error);
     }
