@@ -5,13 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url('./images/milad-fakurian-u8Jn2rzYIps-unsplash.jpg');
+  background: url('./images/30928255.jpg') no-repeat center;
   background-size: cover;
-}
-
-img.background{
-  filter: blur(2px);
-
+  height: 100vh;
 }
 
 code {
@@ -19,48 +15,244 @@ code {
     monospace;
 }
 
-.login-div{
+.login-div {
   text-align: center;
-  margin-top: 10%;
-  /* align-items: center; */
+  margin-top: 5%;
 }
 
-form{
-  border: 2px solid white;
+.form-div{
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.144);
+  width: 400px;
+  /* height: 420px; */
+  padding: 14px 0px;
   border-radius: 4px;
-  padding: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.login-form {
+  padding: 18px;
   margin: auto;
   display: flex;
   flex-direction: column;
-  width: 30%;
   gap: 10px;
-  box-shadow: 1px 1px 10px -1px #836e6e;
 }
 
-input,button{
+.social{
+  /* border: 2px solid white; */
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  gap: 10px;
+}
+
+.google{
+  background-color: #D84B37;
+  padding: 8px 0px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.google:hover{
+  background-color: #f16856;
+}
+
+.fb{
+  background-color: #4267B2;
+  padding: 8px 0px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.fb:hover{
+  background-color: #5583de;
+}
+
+.login-form input {
+  background-color: #5c5c5c8d;
+  border: none;
   padding: 10px 0px;
   border-radius: 4px;
 }
 
-button{
-  font-size: 18px;
+.login-form button {
+  padding: 8px 0px;
+  border-radius: 4px;
+  font-size: 16px;
   font-weight: 600;
   border: none;
   background-color: darkcyan;
   color: white;
   cursor: pointer;
 }
-button:hover{
+
+.login-form button:hover {
   background-color: #04a8a8;
 }
 
-input::placeholder{
-  color: gray;
+.login-form input::placeholder {
+  color: rgb(206, 205, 205);
   text-align: center;
   font-size: 14px;
 }
 
-h1{
+button:active{
+  transform: scale(0.99);
+}
+
+h1,h2,li, p {
   color: white;
-  /* font-size: 24px; */
+}
+
+
+
+/* Dashboard Styling */
+
+.navigation{
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+.navbar{
+  padding: 10px 20px;
+  
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name{
+  text-transform: uppercase;
+}
+
+.dashboard-btn{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.create-btn{
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  background-color: darkcyan;
+  color: white;
+  cursor: pointer;
+}
+#search{
+  background-color: transparent;
+  border: 1px solid gray;
+  padding: 5px;
+  text-align: center;
+  border-radius: 19px;
+  font-size: 15px;
+  color: white;
+}
+.logout{
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  background-color: #c60a0a;
+  color: white;
+  cursor: pointer;
+}
+
+
+.action{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+.sorting{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sorting p{
+  font-weight: bold;
+  font-size: 18px;
+}
+select{
+  /* appearance: none; */
+  padding: 4px 15px;
+  background-color: rgba(128, 128, 128, 0.29);
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  border: none;
+  
+}
+
+/* hero section  */
+.hero{
+  padding: 0px 20px;
+}
+
+.todo-head{
+  background-color: rgba(255, 255, 255, 0.144);
+  backdrop-filter: blur(5px);
+  padding: 12px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+}
+.date-div{
+  display: flex;
+  gap: 10px;
+}
+
+/* Misc  */
+.welcome h1{
+  font-size: 30px;
+}
+
+/* todos section  */
+
+.todos{
+  margin: 10px 70px;
+}
+
+.container{
+  margin: 20px 0px;
+  /* border: 0.2px solid white; */
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+}
+.todo{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding: 20px;
+  background-color: rgba(128, 128, 128, 0.469);
+}
+
+/* Task Styling  */
+
+.tasks{
+  background-color: rgba(128, 128, 128, 0.3);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 20px;
+}
+
+.task{
+  background-color: rgba(128, 128, 128, 0.469);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  /* border: 1px solid gray; */
+  border-radius: 5px;
 }
