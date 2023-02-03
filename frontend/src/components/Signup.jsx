@@ -16,7 +16,7 @@ function Signup() {
     e.preventDefault()
 
     const promise = account.create(
-      uuidv4(),
+      uuidv4,
       user.email,
       user.password,
       user.name
@@ -25,7 +25,7 @@ function Signup() {
     promise.then(
       function (response) {
         console.log(response);
-        navigate('/dashboard') //sucess
+        navigate('/dashboard') //success
       },
       function (error) {
         console.log(error); //failure
